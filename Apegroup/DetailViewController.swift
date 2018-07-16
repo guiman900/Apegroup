@@ -16,12 +16,6 @@ class DetailViewController: UIViewController {
     var restaurant: Restaurant? {
         didSet {
             self.title = restaurant?.name
-            if restaurant?.categories?.count == 0, let id = restaurant?.id {
-                ApegroupNetwork.network.getMenu(restaurantId: String(id))
-            }
-            else {
-                configureView()
-            }
         }
     }
 
@@ -29,7 +23,7 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let count = restaurant?.categories?.count, count > 0 {
             if tableView == nil {
-                self.tableView =   UITableView()    
+                self.tableView =   UITableView()
             }
             tableView.reloadData()
 
@@ -39,7 +33,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        configureView()
+        if restaurant?.categories?.count == 0, let id = restaurant?.id {
+            ApegroupNetwork.network.getMenu(restaurantId: String(id))
+        }
+        else {
+            configureView()
+        }
     }
 
     override func didReceiveMemoryWarning() {
