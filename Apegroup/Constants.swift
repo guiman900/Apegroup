@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static let GetRestaurants = "http://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/restaurants/"
+    static let GetMenu = "http://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/restaurants/"
 }

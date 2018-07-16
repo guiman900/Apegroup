@@ -86,9 +86,12 @@ extension MasterViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = restaurants[indexPath.section].name
+                let restaurant = restaurants[indexPath.section]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                
+                ApegroupNetwork.network.delegate = controller
+                
+                controller.restaurant = restaurant
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -235,6 +238,11 @@ extension MasterViewController : ApegroupNetworkProtocol {
             self.restaurants = restaurants
         }
         tableView.reloadData()
+    }
+    
+    internal func categoriesAndMenuReceived(categories: [Category])
+    {
+        
     }
     
     /**

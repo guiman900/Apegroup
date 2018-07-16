@@ -10,15 +10,29 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var restaurant: Restaurant? {
+        didSet {
+            self.title = restaurant?.name
+            if restaurant?.categories?.count == 0, let id = restaurant?.id {
+                ApegroupNetwork.network.getMenu(restaurantId: String(id))
+            }
+            else {
+                configureView()
+            }
+        }
+    }
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-             label.text = detail
+        if let count = restaurant?.categories?.count, count > 0 {
+            if tableView == nil {
+                self.tableView =   UITableView()    
             }
+            tableView.reloadData()
+
         }
     }
 
@@ -33,13 +47,137 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: String? {
-        didSet {
-            // Update the view.
-            configureView()
-        }
-    }
-
-
 }
 
+/**
+ UITableView Data Source
+ */
+extension DetailViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let title =  self.restaurant?.categories?[section].name
+        return title
+    }
+    
+    /**
+     Asks the data source to return the number of sections in the table view.
+     
+     - Parameter tableView: An object representing the table view requesting this information.
+     */
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let result = self.restaurant?.categories?.count else
+        {
+            return 0
+        }
+        return result
+    }
+    
+    /**
+     Tells the data source to return the number of rows in a given section of a table view.
+     
+     - Parameter tableView: The table-view object requesting this information.
+     - Parameter section: An index number identifying a section in tableView.
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let result = self.restaurant?.categories?[section].menu.count else
+        {
+            return 0
+        }
+        return result
+    }
+    
+    /**
+     Asks the data source for a cell to insert in a particular location of the table view.
+     
+     - Parameter tableView: A table-view object requesting the cell.
+     - Parameter indexPath: An index path locating a row in tableView.
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let menu = self.restaurant?.categories?[indexPath.section].menu[indexPath.row]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: doesTheMenuHaveTopping(count: menu?.topping.count) ? "MenuCell" : "MenuNoToppingCell", for: indexPath) as? MenuCell else {
+                return UITableViewCell()
+        }
+        
+        cell.name.text = menu?.name
+        if let price = menu?.price {
+            cell.price.text = "\(price) $"
+        }
+        else {
+            cell.price.text = "NA"
+
+        }
+        
+        if doesTheMenuHaveTopping(count: menu?.topping.count) {
+            cell.topping.text = menu?.topping.joined(separator: ", ")
+        }
+        
+        return cell
+    }
+    
+    func doesTheMenuHaveTopping(count: Int?) -> Bool
+    {
+        if let number = count, number > 0
+        {
+            return true
+        }
+        return false
+    }
+    
+    /**
+     Asks the delegate for the height to use for the header of a particular section.
+     This method allows the delegate to specify section headers with varying heights.
+     
+     - Parameter tableView: The table-view object requesting this information.
+     - Parameter section: An index number identifying a section of tableView .
+     */
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    /**
+     Asks the delegate for a view object to display in the header of the specified section of the table view.
+     
+     - Parameter tableView: The table-view object asking for the view object.
+     - Parameter section: An index number identifying a section of tableView .
+     */
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.clear
+//        return headerView
+//    }
+    
+}
+
+
+/**
+ Asynchronus delegate of the ApegroupNetworkProtocol
+ */
+extension DetailViewController : ApegroupNetworkProtocol {
+    /**
+     getRestaurants response
+     
+     - Parameter restaurants: restaurants list.
+     */
+    internal func restaurantsReceived(restaurants: [Restaurant])
+    {
+        print(restaurants)
+    }
+    
+    internal func categoriesAndMenuReceived(categories: [Category])
+    {
+        self.restaurant?.categories = categories
+        self.configureView()
+    }
+    
+    /**
+     Method triggered if an error happend during one of the network operation
+     
+     - Parameter error: error description.
+     */
+    internal func networkError(error: String)
+    {
+        print(error)
+    }
+}

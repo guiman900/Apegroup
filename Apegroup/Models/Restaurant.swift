@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-public struct Restaurant {
+public class Restaurant {
     public var id: Int
     public var name: String
     public var address1: String
@@ -17,16 +17,16 @@ public struct Restaurant {
     public var latitude: CLLocationDegrees
     public var longitude: CLLocationDegrees
     
+    public var categories: [Category]?
+    
     var location: CLLocation {
-        return CLLocation(latitude: self.latitude, longitude: self.longitude)
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
     
     func distance(to location: CLLocation) -> CLLocationDistance {
         return location.distance(from: self.location)
     }
-}
-
-extension Restaurant {
+    
     // - MARK: Methods
     /**
      Constructor
@@ -50,12 +50,12 @@ extension Restaurant {
         guard let address1 = json["address1"] as? String else {
             throw SerializationError.missing("address1")
         }
-
+        
         
         guard let address2 = json["address2"] as? String else {
             throw SerializationError.missing("address2")
         }
-
+        
         guard let latitude = json["latitude"] as? Double else {
             throw SerializationError.missing("latitude")
         }
@@ -71,5 +71,8 @@ extension Restaurant {
         self.address2 = address2
         self.latitude = latitude
         self.longitude = longitude
+        
+        self.categories = []
     }
+
 }

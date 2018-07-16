@@ -43,17 +43,10 @@ extension Menu {
             throw SerializationError.missing("name")
         }
         
-        /**
-        guard let topping = json["topping"] as? [String] else {
-            throw SerializationError.missing("topping")
-        }
-        */
         guard let price = json["price"] as? Double else {
             throw SerializationError.missing("price")
         }
-        guard let rank = json["rank"] as? Int else {
-            throw SerializationError.missing("rank")
-        }
+     
         
         
         self.id = id
@@ -61,6 +54,21 @@ extension Menu {
         self.name = name
         self.topping = []
         self.price = price
-        self.rank = rank
+       
+        
+        if let topping = json["topping"] as? [String] {
+            self.topping = topping
+        }
+        else {
+            topping = []
+        }
+        
+        if let rank = json["rank"] as? Int  {
+            self.rank = rank
+        }
+        else
+        {
+            rank = 0
+        }
     }
 }
