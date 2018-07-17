@@ -39,13 +39,6 @@ class DetailViewController: UIViewController {
         else {
             configureView()
         }
-//       UINavigationBar.appearance().backgroundColor = UIColor(red: 19 / 255, green: 105 / 255, blue: 128 / 255, alpha: 1)
-//        UITabBar.appearance().backgroundColor = UIColor.yellow
-//        UINavigationBar.appearance().barTintColor = UIColor(red: 46.0/255.0, green: 14.0/255.0, blue: 74.0/255.0, alpha: 1.0)
-//        UINavigationBar.appearance().tintColor = UIColor.white
-//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-//        
-//        self.preferredStatusBarStyle =
     }
 
     override func didReceiveMemoryWarning() {

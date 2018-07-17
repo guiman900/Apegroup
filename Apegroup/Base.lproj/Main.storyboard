@@ -15,9 +15,14 @@
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.99427657390000002" blue="0.96996452590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.19150069355964661" green="0.40678671002388" blue="0.49421349167823792" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.99427657390000002" blue="0.96996452590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
@@ -173,7 +178,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <barButtonItem key="backBarButtonItem" title="Restaurant" id="EaC-IF-lI8"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="9Ot-3G-GGy" id="7zR-tM-aMr"/>
                     </connections>
@@ -216,26 +223,26 @@
                                             <rect key="frame" x="16" y="16" width="274" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="1" green="0.99427657390000002" blue="0.96996452590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCX-uM-Ubr">
                                             <rect key="frame" x="16" y="45" width="274" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.19150069359999999" green="0.40678671" blue="0.49421349170000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmj-eM-jY7">
                                             <rect key="frame" x="291" y="10" width="54" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" red="1" green="0.99427657390000002" blue="0.96996452590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.55793291330337524" green="0.76773035526275635" blue="0.84318643808364868" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="address" destination="PCX-uM-Ubr" id="mta-ln-n0l"/>
                                     <outlet property="distance" destination="lmj-eM-jY7" id="qp1-i6-2bz"/>
@@ -278,6 +285,6 @@
         <image name="pizza_icon_iphone" width="264" height="264"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="Cna-rk-4aT"/>
     </inferredMetricsTieBreakers>
 </document>

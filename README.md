@@ -27,14 +27,6 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 ## Documentation
 To generate the documentation please use jazzy (https://github.com/realm/jazzy)
 
-### Apegroup Documentation
-```
-cd Apegroup
-sudo jazzy --min-acl {private,internal,public}
-cd doc
-```
-double click on index.html
-
 ## Tests
 The tests are availables on the Apegroup project.
 

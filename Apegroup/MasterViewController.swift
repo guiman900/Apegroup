@@ -233,26 +233,27 @@ extension MasterViewController: CLLocationManagerDelegate {
             return
         }
         
-        if  self.currentLocation == nil
+        if self.currentLocation == nil
         {
-            self.currentLocation = manager.location
-        }
-        
-        guard let distanceFromLastLocation = currentLocation?.distance(from: newLocation) else {
-            return
-        }
-        
-        if distanceFromLastLocation != 0
-        {
-            self.currentLocation =  manager.location
-            self.refreshRestaurantDistanceWithNewList()
+            self.refreshRestaurantDistanceWithNewList(userLocation: newLocation)
+
+        } else {
+            guard let distanceFromLastLocation = currentLocation?.distance(from: newLocation) else {
+                return
+            }
+            if distanceFromLastLocation != 0
+            {
+                self.refreshRestaurantDistanceWithNewList(userLocation: newLocation)
+            }
         }
     }
     
     /**
      Reorder the restaurant list
     */
-    private func refreshRestaurantDistanceWithNewList() {
+    private func refreshRestaurantDistanceWithNewList(userLocation: CLLocation) {
+        self.currentLocation =  userLocation
+
         guard let currentLocation = self.currentLocation else {
             return
         }
