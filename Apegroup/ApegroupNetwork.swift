@@ -12,7 +12,7 @@ import Alamofire
 /**
  ApegroupNetwork is the network encapsulation for the Apegroup Rest APIs.
  */
-internal class ApegroupNetwork {
+public class ApegroupNetwork {
     // - Mark: Properties
     
     /// delegate to retrieve the network responses.

@@ -11,7 +11,7 @@ import Foundation
 /**
 Category Model, use to sort the menu before displaying it on the DetailViewController.
  */
-public class Category
+class Category
 {
     // - MARK: properties
     

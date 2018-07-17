@@ -9,8 +9,10 @@
 import XCTest
 @testable import Apegroup
 
-class ApegroupTests: XCTestCase {
+class ApegroupTests: XCTestCase, ApegroupNetworkProtocol {
     
+    var expression: XCTestExpectation?
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,6 +26,13 @@ class ApegroupTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        expression = expectation(description: "network test finished")
+
+        ApegroupNetwork.network.delegate = self
+        ApegroupNetwork.network.getRestaurants()
+
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testPerformanceExample() {
@@ -33,4 +42,29 @@ class ApegroupTests: XCTestCase {
         }
     }
     
+    internal func restaurantsReceived(restaurants: [Restaurant])
+    {
+        print("[Restaurant Received] : \(restaurants)");
+        print("")
+        
+        if let restaurantId = restaurants.first?.id
+        {
+            ApegroupNetwork.network.getMenu(restaurantId: String(restaurantId))
+        }
+    }
+    
+    internal func categoriesAndMenuReceived(categories: [Apegroup.Category])
+    {
+        print("[Menus Received] : \(categories)");
+        print("")
+        
+        expression?.fulfill()
+        
+        print("NETWORK WORKING : \(categories)");
+    }
+    
+    internal func networkError(error: String)
+    {
+        print(error)
+    }
 }
