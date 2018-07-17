@@ -23,4 +23,6 @@ class MenuCell: UITableViewCell {
     
     /// List of available topping
     @IBOutlet weak var topping: UILabel!
+    
+    @IBOutlet weak var menuImage: UIImageView!
 }
