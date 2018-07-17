@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /**
- TableView cell used on the MasterViewController
+ TableViewCell used on the MasterViewController
  */
 class RestaurantCell: UITableViewCell {
     // - MARK: properties

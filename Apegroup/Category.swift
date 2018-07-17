@@ -8,16 +8,24 @@
 
 import Foundation
 
+/**
+Category Model, use to sort the menu before displaying it on the DetailViewController.
+ */
 public class Category
 {
+    // - MARK: properties
+    
+    /// Category Name
     var name: String
+    
+    /// menu list for this category
     var menu: [Menu]
     
     // - MARK: Methods
     /**
      Constructor
      
-     - Parameter json: json to unserialize and used to set the Restaurant model.
+     - Parameter json: json to unserialize and used to set the Category model.
      */
     init(json: [String: Any]?) throws {
         guard let json = json else {
@@ -36,7 +44,12 @@ public class Category
 }
 
 extension Category {
-    
+    /**
+     Static func to create an array of menu sorted by categories.
+     
+     - Parameter json: json to unserialize and used to set the Category / Menu model.
+     */
+
     static func createCategoryArray(json: [[String: Any]]) -> [Category]?
     {
         var result = [Category]()

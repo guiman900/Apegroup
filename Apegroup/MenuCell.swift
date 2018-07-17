@@ -9,15 +9,18 @@
 import Foundation
 import UIKit
 
+/**
+ Menu Cell Model used on the DetailViewController.
+ */
 class MenuCell: UITableViewCell {
     // - MARK: properties
     
-    /// Restaurant name.
+    /// Menu name.
     @IBOutlet weak var name: UILabel!
     
-    /// Restaurant Address
+    /// Menu address
     @IBOutlet weak var price: UILabel!
     
-    /// Distance from the current location
+    /// List of available topping
     @IBOutlet weak var topping: UILabel!
 }

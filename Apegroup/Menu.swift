@@ -8,13 +8,29 @@
 
 import Foundation
 
+/**
+ Menu model get from the network
+ */
 struct Menu
 {
+    // - MARK: properties
+    
+    /// Menu Id
     var id: Int
+    
+    /// Menu Category
     var category: String
+    
+    /// Menu name
     var name: String
+    
+    /// Menu topping
     var topping: [String]
+    
+    /// Menu Price
     var price: Double
+    
+    /// Menu Rank
     var rank: Int
 }
 
@@ -23,7 +39,7 @@ extension Menu {
     /**
      Constructor
      
-     - Parameter json: json to unserialize and used to set the Restaurant model.
+     - Parameter json: json to unserialize and used to set the Menu model.
      */
     init(json: [String: Any]?) throws {
         guard let json = json else {
@@ -47,7 +63,6 @@ extension Menu {
             throw SerializationError.missing("price")
         }
      
-        
         
         self.id = id
         self.category = category

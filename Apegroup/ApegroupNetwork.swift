@@ -17,6 +17,8 @@ public class ApegroupNetwork {
     
     /// delegate to retrieve the network responses.
     public var delegate: ApegroupNetworkProtocol?
+    
+    /// static instance of ApegroupNetwork
     public static var network = ApegroupNetwork()
     
     // - Mark: Methods
@@ -71,6 +73,11 @@ public class ApegroupNetwork {
         }
     }
     
+    /**
+     Get the menu list of a Restaurant
+     
+     - Parameter restaurantId: Id of tehe restaurant.
+     */
     public func getMenu(restaurantId: String)
     {
         guard let url = URL(string: "\(Constants.GetMenu)\(restaurantId)/menu") else {

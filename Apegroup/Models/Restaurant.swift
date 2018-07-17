@@ -9,22 +9,37 @@
 import Foundation
 import CoreLocation
 
+
+/**
+ Restaurant model get from the network.
+ */
 public class Restaurant {
+    // - Mark: Properties
+    
+    /// Restaurant Id
     public var id: Int
+    
+    /// Restaurant name
     public var name: String
+    
+    /// Restaurant address (Street and Number)
     public var address1: String
+    
+    /// Restaurant address (Zip Code and City)
     public var address2: String
+    
+    /// Restaurant Latitude
     public var latitude: CLLocationDegrees
+    
+    /// Restaurant Longitude
     public var longitude: CLLocationDegrees
     
+    /// Restaurant Category list containing the menus.
     public var categories: [Category]?
     
+    /// Restaurant Location
     var location: CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
-    }
-    
-    func distance(to location: CLLocation) -> CLLocationDistance {
-        return location.distance(from: self.location)
     }
     
     // - MARK: Methods
@@ -75,4 +90,12 @@ public class Restaurant {
         self.categories = []
     }
 
+    /**
+     Restaurant distance from the current location parameter
+
+     - Parameter location: location of the user.
+     */
+    func distance(to location: CLLocation) -> CLLocationDistance {
+        return location.distance(from: self.location)
+    }
 }

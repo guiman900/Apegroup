@@ -9,16 +9,30 @@
 import UIKit
 import CoreLocation
 
+/**
+ MasterViewController is used to display the restaurant list.
+ */
 class MasterViewController: UITableViewController {
-
+    // - MARK: properties
+    
+    /// detail view controller displaying the restaurant menu.
     var detailViewController: DetailViewController? = nil
+    
+    /// list of restaurant to display
     var restaurants = [Restaurant]()
+    
+    /// location manager
     let locationManager = CLLocationManager()
+    
+    /// current location of the user
     var currentLocation: CLLocation?
     
+    // - MARK: Methods
+    /**
+     Called after the controller's view is loaded into memory.
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
@@ -33,11 +47,19 @@ class MasterViewController: UITableViewController {
         ApegroupNetwork.network.getRestaurants()
     }
 
+    /**
+     Notifies the view controller that its view is about to be added to a view hierarchy.
+     
+     - Parameter animated: If true, the view is being added to the window using an animation.
+    */
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
 
+    /**
+     Sent to the view controller when the app receives a memory warning.
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,6 +77,9 @@ class MasterViewController: UITableViewController {
 }
 
 
+/**
+ UITableView Delegate
+ */
 extension MasterViewController {
     /**
      Asks the data source to verify that the given row is editable.
@@ -82,7 +107,12 @@ extension MasterViewController {
         }
     }
 
-    // MARK: - Segues
+    /**
+     Notifies the view controller that a segue is about to be performed.
+ 
+     - Parameter segue: The segue object containing information about the view controllers involved in the segue.
+     - Parameter sender: The object that initiated the segue. You might use this parameter to perform different actions based on which control (or other object) initiated the segue.
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -176,6 +206,9 @@ extension MasterViewController {
 Manage Core Location
  */
 extension MasterViewController: CLLocationManagerDelegate {
+    /**
+     Init Core Location.
+    */
     func initCoreLocation() {
         self.locationManager.requestAlwaysAuthorization()
         
@@ -189,6 +222,12 @@ extension MasterViewController: CLLocationManagerDelegate {
         }
     }
     
+    /**
+     Tells the delegate that new location data is available. Implementation of this method is optional but recommended.
+     
+     - Parameter tableView: manager: The location manager object that generated the update event.
+     - Parameter tableView: locations: An array of CLLocation objects containing the location data. This array always contains at least one object representing the current location. If updates were deferred or if multiple locations arrived before they could be delivered, the array may contain additional entries. The objects in the array are organized in the order in which they occurred. Therefore, the most recent location update is at the end of the array.
+     */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = manager.location else {
             return
@@ -210,11 +249,15 @@ extension MasterViewController: CLLocationManagerDelegate {
         }
     }
     
+    /**
+     Reorder the restaurant list
+    */
     func refreshRestaurantDistanceWithNewList() {
         guard let currentLocation = self.currentLocation else {
             return
         }
         self.restaurants.sort(by: { $0.distance(to: currentLocation) < $1.distance(to: currentLocation) })
+        self.tableView.reloadData()
     }
 }
 
