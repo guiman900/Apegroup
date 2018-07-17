@@ -16,22 +16,22 @@ struct Menu
     // - MARK: properties
     
     /// Menu Id
-    var id: Int
+    internal var id: Int
     
     /// Menu Category
-    var category: String
+    internal var category: String
     
     /// Menu name
-    var name: String
+    internal var name: String
     
     /// Menu topping
-    var topping: [String]
+    internal var topping: [String]
     
     /// Menu Price
-    var price: Double
+    internal var price: Double
     
     /// Menu Rank
-    var rank: Int
+    internal var rank: Int
 }
 
 extension Menu {

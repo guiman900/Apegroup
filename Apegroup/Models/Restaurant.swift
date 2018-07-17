@@ -17,28 +17,28 @@ public class Restaurant {
     // - Mark: Properties
     
     /// Restaurant Id
-    public var id: Int
+    internal var id: Int
     
     /// Restaurant name
-    public var name: String
+    internal var name: String
     
     /// Restaurant address (Street and Number)
-    public var address1: String
+    internal var address1: String
     
     /// Restaurant address (Zip Code and City)
-    public var address2: String
+    internal var address2: String
     
     /// Restaurant Latitude
-    public var latitude: CLLocationDegrees
+    internal var latitude: CLLocationDegrees
     
     /// Restaurant Longitude
-    public var longitude: CLLocationDegrees
+    internal var longitude: CLLocationDegrees
     
     /// Restaurant Category list containing the menus.
-    public var categories: [Category]?
+    internal var categories: [Category]?
     
     /// Restaurant Location
-    var location: CLLocation {
+    internal var location: CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
@@ -95,7 +95,7 @@ public class Restaurant {
 
      - Parameter location: location of the user.
      */
-    func distance(to location: CLLocation) -> CLLocationDistance {
+    internal func distance(to location: CLLocation) -> CLLocationDistance {
         return location.distance(from: self.location)
     }
 }

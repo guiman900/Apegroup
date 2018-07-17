@@ -16,16 +16,16 @@ class MasterViewController: UITableViewController {
     // - MARK: properties
     
     /// detail view controller displaying the restaurant menu.
-    var detailViewController: DetailViewController? = nil
+    internal var detailViewController: DetailViewController? = nil
     
     /// list of restaurant to display
-    var restaurants = [Restaurant]()
+    internal var restaurants = [Restaurant]()
     
     /// location manager
-    let locationManager = CLLocationManager()
+    internal let locationManager = CLLocationManager()
     
     /// current location of the user
-    var currentLocation: CLLocation?
+    internal var currentLocation: CLLocation?
     
     // - MARK: Methods
     /**
@@ -68,7 +68,7 @@ class MasterViewController: UITableViewController {
     /**
     Shopping Bag
     */
-    func insertNewObject(_ sender: Any) {
+    internal func insertNewObject(_ sender: Any) {
      //   objects.insert(NSDate(), at: 0)
      //   let indexPath = IndexPath(row: 0, section: 0)
      //   tableView.insertRows(at: [indexPath], with: .automatic)
@@ -209,7 +209,7 @@ extension MasterViewController: CLLocationManagerDelegate {
     /**
      Init Core Location.
     */
-    func initCoreLocation() {
+    fileprivate func initCoreLocation() {
         self.locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
@@ -252,7 +252,7 @@ extension MasterViewController: CLLocationManagerDelegate {
     /**
      Reorder the restaurant list
     */
-    func refreshRestaurantDistanceWithNewList() {
+    private func refreshRestaurantDistanceWithNewList() {
         guard let currentLocation = self.currentLocation else {
             return
         }

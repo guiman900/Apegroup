@@ -16,10 +16,10 @@ public class Category
     // - MARK: properties
     
     /// Category Name
-    var name: String
+    internal var name: String
     
     /// menu list for this category
-    var menu: [Menu]
+    internal var menu: [Menu]
     
     // - MARK: Methods
     /**

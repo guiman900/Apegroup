@@ -13,13 +13,13 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var restaurant: Restaurant? {
+    internal var restaurant: Restaurant? {
         didSet {
             self.title = restaurant?.name
         }
     }
 
-    func configureView() {
+    fileprivate func configureView() {
         // Update the user interface for the detail item.
         if let count = restaurant?.categories?.count, count > 0 {
             if tableView == nil {
@@ -115,7 +115,7 @@ extension DetailViewController: UITableViewDataSource {
         return cell
     }
     
-    func doesTheMenuHaveTopping(count: Int?) -> Bool
+    private func doesTheMenuHaveTopping(count: Int?) -> Bool
     {
         if let number = count, number > 0
         {
@@ -134,19 +134,6 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
-    /**
-     Asks the delegate for a view object to display in the header of the specified section of the table view.
-     
-     - Parameter tableView: The table-view object asking for the view object.
-     - Parameter section: An index number identifying a section of tableView .
-     */
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView()
-//        headerView.backgroundColor = UIColor.clear
-//        return headerView
-//    }
-    
 }
 
 

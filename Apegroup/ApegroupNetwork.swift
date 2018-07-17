@@ -12,26 +12,26 @@ import Alamofire
 /**
  ApegroupNetwork is the network encapsulation for the Apegroup Rest APIs.
  */
-public class ApegroupNetwork {
+internal class ApegroupNetwork {
     // - Mark: Properties
     
     /// delegate to retrieve the network responses.
-    public var delegate: ApegroupNetworkProtocol?
+    internal var delegate: ApegroupNetworkProtocol?
     
     /// static instance of ApegroupNetwork
-    public static var network = ApegroupNetwork()
+    internal static var network = ApegroupNetwork()
     
     // - Mark: Methods
     
     /**
      Constructor
      */
-    public init() {}
+    init() {}
     
     /**
      Get a list of restaurants.
      */
-    public func getRestaurants()
+    internal func getRestaurants()
     {
         guard let url = URL(string: Constants.GetRestaurants) else {
             return
@@ -78,7 +78,7 @@ public class ApegroupNetwork {
      
      - Parameter restaurantId: Id of tehe restaurant.
      */
-    public func getMenu(restaurantId: String)
+    internal func getMenu(restaurantId: String)
     {
         guard let url = URL(string: "\(Constants.GetMenu)\(restaurantId)/menu") else {
             return

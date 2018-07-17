@@ -11,7 +11,7 @@ import Foundation
 /**
  ApegroupNetworkProtocol is used to retrieve the network results.
  */
-public protocol ApegroupNetworkProtocol {
+protocol ApegroupNetworkProtocol {
     // - MARK: Methods
     
     /**
