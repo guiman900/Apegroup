@@ -63,6 +63,18 @@ class ApegroupTests: XCTestCase, ApegroupNetworkProtocol {
         print("NETWORK WORKING : \(categories)");
     }
     
+    
+    internal func orderCreated(order: Order)
+    {
+        print(order)
+    }
+    
+    func orderReceived(order: Order)
+    {
+        
+    }
+
+    
     internal func networkError(error: String)
     {
         print(error)

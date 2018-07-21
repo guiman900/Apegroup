@@ -15,8 +15,8 @@ struct Constants {
     // - Mark: Properties
     
     /// Url to get the restaurant list
-    static let GetRestaurants = "https://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/restaurants/"
+    static let RestaurandAndMenuUrl = "https://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/restaurants/"
     
-    /// Url to get the menu list of a restaurant
-    static let GetMenu = "https://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/restaurants/"
+    /// Url to create an Order
+    static let OrderUrl = "https://private-anon-f1d872a9df-pizzaapp.apiary-mock.com/orders/"
 }

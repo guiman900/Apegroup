@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5516628E210231EE002FE902 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5516628D210231EE002FE902 /* OrdersViewController.swift */; };
+		5516629021024236002FE902 /* ResumeOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5516628F21024236002FE902 /* ResumeOrderViewController.swift */; };
+		552E058B20FFE9EC0024237D /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E058A20FFE9EC0024237D /* OrderViewController.swift */; };
 		553124E120FCE957003DD85E /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553124E020FCE957003DD85E /* MenuCell.swift */; };
 		5566907220FC880A006D69EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566907120FC880A006D69EE /* AppDelegate.swift */; };
 		5566907420FC880A006D69EE /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5566907320FC880A006D69EE /* MasterViewController.swift */; };
@@ -21,9 +24,11 @@
 		557868AD20FC95F0006CAED0 /* ApegroupNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868AC20FC95F0006CAED0 /* ApegroupNetworkProtocol.swift */; };
 		557868B020FC96CC006CAED0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868AF20FC96CC006CAED0 /* Constants.swift */; };
 		557868B220FC9847006CAED0 /* SerializationErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868B120FC9847006CAED0 /* SerializationErrorEnum.swift */; };
-		557868B420FC9FDB006CAED0 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868B320FC9FDB006CAED0 /* RestaurantCell.swift */; };
+		557868B420FC9FDB006CAED0 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868B320FC9FDB006CAED0 /* GenericCell.swift */; };
 		557868B620FCCDD0006CAED0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868B520FCCDD0006CAED0 /* Menu.swift */; };
 		557868B820FCD037006CAED0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557868B720FCD037006CAED0 /* Category.swift */; };
+		559FFBBD20FE407B00BFA056 /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559FFBBC20FE407B00BFA056 /* OrderManager.swift */; };
+		559FFBBF20FE40AE00BFA056 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559FFBBE20FE40AE00BFA056 /* Order.swift */; };
 		6E373978FA00AEEA4CEE86D3 /* Pods_ApegroupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F8208D58C9EBD4A869FA0F /* Pods_ApegroupTests.framework */; };
 		71EBFE48839A8BF47317600B /* Pods_ApegroupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA49E724378F3B6977489DF /* Pods_ApegroupUITests.framework */; };
 		A3FBD4603A6752E1EF49B606 /* Pods_Apegroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DFC2386C936D5346CEDE66 /* Pods_Apegroup.framework */; };
@@ -50,6 +55,9 @@
 		39DFC2386C936D5346CEDE66 /* Pods_Apegroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apegroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA49E724378F3B6977489DF /* Pods_ApegroupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApegroupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49369A16E2A9EDC6081DF7F8 /* Pods-Apegroup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apegroup.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apegroup/Pods-Apegroup.debug.xcconfig"; sourceTree = "<group>"; };
+		5516628D210231EE002FE902 /* OrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		5516628F21024236002FE902 /* ResumeOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeOrderViewController.swift; sourceTree = "<group>"; };
+		552E058A20FFE9EC0024237D /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		553124E020FCE957003DD85E /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		5566906E20FC880A006D69EE /* Apegroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apegroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5566907120FC880A006D69EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,9 +78,11 @@
 		557868AC20FC95F0006CAED0 /* ApegroupNetworkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApegroupNetworkProtocol.swift; sourceTree = "<group>"; };
 		557868AF20FC96CC006CAED0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		557868B120FC9847006CAED0 /* SerializationErrorEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationErrorEnum.swift; sourceTree = "<group>"; };
-		557868B320FC9FDB006CAED0 /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		557868B320FC9FDB006CAED0 /* GenericCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		557868B520FCCDD0006CAED0 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		557868B720FCD037006CAED0 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		559FFBBC20FE407B00BFA056 /* OrderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
+		559FFBBE20FE40AE00BFA056 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		76CE554920878A04C76AD266 /* Pods-ApegroupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApegroupUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApegroupUITests/Pods-ApegroupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		78F8208D58C9EBD4A869FA0F /* Pods_ApegroupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApegroupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C3AE8899D523028802483C /* Pods-ApegroupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApegroupUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApegroupUITests/Pods-ApegroupUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +160,9 @@
 				5566907120FC880A006D69EE /* AppDelegate.swift */,
 				5566907320FC880A006D69EE /* MasterViewController.swift */,
 				5566907520FC880A006D69EE /* DetailViewController.swift */,
+				5516628D210231EE002FE902 /* OrdersViewController.swift */,
+				552E058A20FFE9EC0024237D /* OrderViewController.swift */,
+				5516628F21024236002FE902 /* ResumeOrderViewController.swift */,
 				5566907720FC880A006D69EE /* Main.storyboard */,
 				5566907A20FC880A006D69EE /* Assets.xcassets */,
 				5566907C20FC880A006D69EE /* LaunchScreen.storyboard */,
@@ -180,10 +193,12 @@
 			isa = PBXGroup;
 			children = (
 				556690A220FC8881006D69EE /* Restaurant.swift */,
-				557868B320FC9FDB006CAED0 /* RestaurantCell.swift */,
+				557868B320FC9FDB006CAED0 /* GenericCell.swift */,
 				557868B520FCCDD0006CAED0 /* Menu.swift */,
 				557868B720FCD037006CAED0 /* Category.swift */,
 				553124E020FCE957003DD85E /* MenuCell.swift */,
+				559FFBBC20FE407B00BFA056 /* OrderManager.swift */,
+				559FFBBE20FE40AE00BFA056 /* Order.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -432,18 +447,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				557868B420FC9FDB006CAED0 /* RestaurantCell.swift in Sources */,
+				557868B420FC9FDB006CAED0 /* GenericCell.swift in Sources */,
 				5566907620FC880A006D69EE /* DetailViewController.swift in Sources */,
 				553124E120FCE957003DD85E /* MenuCell.swift in Sources */,
+				5516629021024236002FE902 /* ResumeOrderViewController.swift in Sources */,
+				5516628E210231EE002FE902 /* OrdersViewController.swift in Sources */,
 				556690A320FC8881006D69EE /* Restaurant.swift in Sources */,
 				5566907420FC880A006D69EE /* MasterViewController.swift in Sources */,
 				557868B620FCCDD0006CAED0 /* Menu.swift in Sources */,
+				559FFBBF20FE40AE00BFA056 /* Order.swift in Sources */,
 				556690A620FC89E7006D69EE /* ApegroupNetwork.swift in Sources */,
 				557868B220FC9847006CAED0 /* SerializationErrorEnum.swift in Sources */,
 				557868B020FC96CC006CAED0 /* Constants.swift in Sources */,
 				5566907220FC880A006D69EE /* AppDelegate.swift in Sources */,
+				552E058B20FFE9EC0024237D /* OrderViewController.swift in Sources */,
 				557868AD20FC95F0006CAED0 /* ApegroupNetworkProtocol.swift in Sources */,
 				557868B820FCD037006CAED0 /* Category.swift in Sources */,
+				559FFBBD20FE407B00BFA056 /* OrderManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

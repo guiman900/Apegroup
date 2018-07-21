@@ -11,7 +11,7 @@ import Foundation
 /**
  Menu model get from the network
  */
-struct Menu
+internal struct Menu
 {
     // - MARK: properties
     
@@ -32,9 +32,10 @@ struct Menu
     
     /// Menu Rank
     internal var rank: Int
-}
-
-extension Menu {
+    
+    /// Number of Menu That will be send
+    internal var quantity: Int
+    
     // - MARK: Methods
     /**
      Constructor
@@ -46,7 +47,6 @@ extension Menu {
             throw SerializationError.missing("json")
         }
         
-        print(json)
         guard let id = json["id"] as? Int else {
             throw SerializationError.missing("id")
         }
@@ -62,14 +62,14 @@ extension Menu {
         guard let price = json["price"] as? Double else {
             throw SerializationError.missing("price")
         }
-     
+        
         
         self.id = id
         self.category = category
         self.name = name
         self.topping = []
         self.price = price
-       
+        
         
         if let topping = json["topping"] as? [String] {
             self.topping = topping
@@ -85,5 +85,39 @@ extension Menu {
         {
             rank = 0
         }
+        self.quantity = 0
+    }
+    
+    /**
+     Constructor
+    */
+    init()
+    {
+        self.id = 0
+        self.category = ""
+        self.name = ""
+        self.topping = []
+        self.price = 0
+        self.topping = []
+        self.rank = 0
+        self.quantity = 0
+    }
+
+    /**
+     Create a copy of the object
+    */
+    internal func copy() -> Menu
+    {
+        var menu = Menu()
+        menu.id = self.id
+        menu.category = self.category
+        menu.name = self.name
+        menu.topping = self.topping
+        menu.price = self.price
+        menu.topping = self.topping
+        menu.rank = self.rank
+        menu.quantity = self.quantity
+        
+        return menu
     }
 }

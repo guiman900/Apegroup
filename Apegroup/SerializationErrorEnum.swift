@@ -11,6 +11,6 @@ import Foundation
 /**
  enum used for the serialization errors.
  */
-enum SerializationError: Error {
+internal enum SerializationError: Error {
     case missing(String)
 }

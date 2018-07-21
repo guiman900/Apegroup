@@ -13,7 +13,7 @@ import CoreLocation
 /**
  Restaurant model get from the network.
  */
-public class Restaurant {
+internal class Restaurant {
     // - Mark: Properties
     
     /// Restaurant Id
@@ -53,7 +53,6 @@ public class Restaurant {
             throw SerializationError.missing("json")
         }
         
-        print(json)
         guard let id = json["id"] as? Int else {
             throw SerializationError.missing("id")
         }
@@ -97,5 +96,16 @@ public class Restaurant {
      */
     internal func distance(to location: CLLocation) -> CLLocationDistance {
         return location.distance(from: self.location)
+    }
+    
+    /**
+     Reset the quantity of the menu restaurant
+     */
+    internal func resetMenuQuantities() {
+        if let nbItems = categories?.count {
+            for index in 0...nbItems - 1 {
+                self.categories?[index].resetMenuCategories()
+            }
+        }
     }
 }

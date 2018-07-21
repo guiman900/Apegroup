@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
+
 /**
  Menu Cell Model used on the DetailViewController.
  */
-class MenuCell: UITableViewCell {
+internal class MenuCell: UITableViewCell {
     // - MARK: properties
     
     /// Menu name.
@@ -24,5 +25,9 @@ class MenuCell: UITableViewCell {
     /// List of available topping
     @IBOutlet weak var topping: UILabel!
     
+    /// image of the menu
     @IBOutlet weak var menuImage: UIImageView!
+    
+    /// number of menu ordered
+    @IBOutlet weak var quantity: UILabel!
 }

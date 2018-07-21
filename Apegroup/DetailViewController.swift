@@ -8,17 +8,27 @@
 
 import UIKit
 
+/**
+Detail View Controller to manage an order. 
+*/
 class DetailViewController: UIViewController {
+    // - MARK: properties
 
-
+    /// table view
     @IBOutlet weak var tableView: UITableView!
     
+    /// restaurant selected
     internal var restaurant: Restaurant? {
         didSet {
             self.title = restaurant?.name
         }
     }
+    
+    // - MARK: Methods
 
+    /**
+     update the view
+    */
     fileprivate func configureView() {
         // Update the user interface for the detail item.
         if let count = restaurant?.categories?.count, count > 0 {
@@ -30,22 +40,59 @@ class DetailViewController: UIViewController {
         }
     }
 
+    /**
+     Called after the controller's view is loaded into memory.
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ApegroupNetwork.network.delegate = self
+
+        
         // Do any additional setup after loading the view, typically from a nib.
+        let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(OrderViewController(_:)))
+        navigationItem.rightBarButtonItem = addButton
+        
         if restaurant?.categories?.count == 0, let id = restaurant?.id {
             ApegroupNetwork.network.getMenu(restaurantId: String(id))
         }
         else {
+            // reset order and data
             configureView()
         }
     }
 
+    /**
+     Notifies the view controller that its view is about to be added to a view hierarchy.
+     
+     - Parameter animated: If true, the view is being added to the window using an
+    */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
+    /**
+     Sent to the view controller when the app receives a memory warning.
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    /**
+     perform the segue to navigate to the order page.
+    */
+    internal func OrderViewController(_ sender: Any) {
+        self.performSegue(withIdentifier: "OrderPage", sender: self)
+    }
+    
+    /**
+     Reset the menu restaurant quantity
+    */
+    internal func resetMenu(){
+        self.restaurant?.resetMenuQuantities()
+    }
 }
 
 /**
@@ -53,6 +100,13 @@ class DetailViewController: UIViewController {
  */
 extension DetailViewController: UITableViewDataSource {
     
+    /**
+     Asks the data source for the title of the header of the specified section of the table view.
+    
+     - Parameter tableView: The table-view object asking for the title.
+     - Parameter section: An index number identifying a section of tableView .
+     
+     */
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let title =  self.restaurant?.categories?[section].name
         return title
@@ -122,9 +176,20 @@ extension DetailViewController: UITableViewDataSource {
             cell.menuImage.image = UIImage(named: "dish_iphone")
         }
         
+        if let quantity = menu?.quantity {
+            cell.quantity.text = "\(quantity)"
+        }
+        else {
+            cell.quantity.text = "0"
+            
+        }
+        
         return cell
     }
     
+    /**
+     Check if the menu hqve topping
+    */
     private func doesTheMenuHaveTopping(count: Int?) -> Bool
     {
         if let number = count, number > 0
@@ -153,6 +218,44 @@ extension DetailViewController: UITableViewDataSource {
     }
 }
 
+/**
+Button management
+*/
+extension DetailViewController {
+    /**
+     Add a menu to the order
+    */
+    @IBAction func addButton(_ sender: Any) {
+        if let cell = (sender as? UIButton)?.superview?.superview as? UITableViewCell
+        {
+            if let indexPath = self.tableView.indexPath(for: cell) {
+                if let menu = self.restaurant?.categories?[indexPath.section].menu[indexPath.row], menu.quantity < 10 {
+                    OrderManager.orderManager.addMenu(restaurant: self.restaurant, menu: menu)
+                    self.restaurant?.categories?[indexPath.section].menu[indexPath.row].quantity += 1
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+    }
+    
+    /**
+     Remove a menu from the order
+    */
+    @IBAction func removeButton(_ sender: Any) {
+        if let cell = (sender as? UIButton)?.superview?.superview as? UITableViewCell
+        {
+            if let indexPath = self.tableView.indexPath(for: cell) {
+                if let menu = self.restaurant?.categories?[indexPath.section].menu[indexPath.row], menu.quantity > 0 {
+                    OrderManager.orderManager.removeMenu(restaurant: self.restaurant, menu: menu)
+                    self.restaurant?.categories?[indexPath.section].menu[indexPath.row].quantity -= 1
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+    }
+}
 
 /**
  Asynchronus delegate of the ApegroupNetworkProtocol
@@ -165,13 +268,37 @@ extension DetailViewController : ApegroupNetworkProtocol {
      */
     internal func restaurantsReceived(restaurants: [Restaurant])
     {
-        print(restaurants)
     }
     
+    /**
+     getMenu response
+     
+     - Parameter categories: categories with the menu.
+     */
     internal func categoriesAndMenuReceived(categories: [Category])
     {
         self.restaurant?.categories = categories
         self.configureView()
+    }
+    
+    /**
+     create Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    internal func orderCreated(order: Order)
+    {
+        
+    }
+    
+    /**
+     read Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    func orderReceived(order: Order)
+    {
+        
     }
     
     /**

@@ -34,7 +34,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(insertOrdersViewController(_:)))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -68,10 +68,8 @@ class MasterViewController: UITableViewController {
     /**
     Shopping Bag
     */
-    internal func insertNewObject(_ sender: Any) {
-     //   objects.insert(NSDate(), at: 0)
-     //   let indexPath = IndexPath(row: 0, section: 0)
-     //   tableView.insertRows(at: [indexPath], with: .automatic)
+    internal func insertOrdersViewController(_ sender: Any) {
+        self.performSegue(withIdentifier: "OrdersPage", sender: self)
     }
 
 }
@@ -159,7 +157,7 @@ extension MasterViewController {
      - Parameter indexPath: An index path locating a row in tableView.
      */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RestaurantCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? GenericCell else {
             return UITableViewCell()
         }
         
@@ -273,7 +271,6 @@ extension MasterViewController : ApegroupNetworkProtocol {
      */
     internal func restaurantsReceived(restaurants: [Restaurant])
     {
-        print(restaurants)
         if let currentLocation = currentLocation
         {
             self.restaurants = restaurants.sorted(by: { $0.distance(to: currentLocation) < $1.distance(to: currentLocation) })
@@ -284,7 +281,32 @@ extension MasterViewController : ApegroupNetworkProtocol {
         tableView.reloadData()
     }
     
+    
+    /**
+     getMenu response
+     
+     - Parameter categories: categories with the menu.
+     */
     internal func categoriesAndMenuReceived(categories: [Category])
+    {
+        
+    }
+    
+    /**
+     create Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    internal func orderCreated(order: Order)
+    {
+    }
+    
+    /**
+     read Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    internal func orderReceived(order: Order)
     {
         
     }

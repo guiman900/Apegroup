@@ -28,6 +28,20 @@ protocol ApegroupNetworkProtocol {
      */
     func categoriesAndMenuReceived(categories: [Category])
 
+    /**
+     create Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    func orderCreated(order: Order)
+    
+    /**
+     read Order response
+     
+     - Parameter order: the order received from the server.
+     */
+    func orderReceived(order: Order)
+
     
     /**
      Method triggered if an error happend during one of the network operation

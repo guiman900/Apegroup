@@ -33,7 +33,7 @@ public class ApegroupNetwork {
      */
     internal func getRestaurants()
     {
-        guard let url = URL(string: Constants.GetRestaurants) else {
+        guard let url = URL(string: Constants.RestaurandAndMenuUrl) else {
             return
         }
         
@@ -80,7 +80,7 @@ public class ApegroupNetwork {
      */
     internal func getMenu(restaurantId: String)
     {
-        guard let url = URL(string: "\(Constants.GetMenu)\(restaurantId)/menu") else {
+        guard let url = URL(string: "\(Constants.RestaurandAndMenuUrl)\(restaurantId)/menu") else {
             return
         }
         
@@ -112,4 +112,83 @@ public class ApegroupNetwork {
                     }
             }
     }
+    
+    /**
+     Create an order
+     */
+    internal func createOrder(orderManager: OrderManager)
+    {
+        guard let url = URL(string: Constants.OrderUrl) else {
+            return
+        }
+        
+        Alamofire.request(url, method: .post, parameters: orderManager.getOrderSerialized(), encoding: JSONEncoding.default).validate()
+            .responseJSON
+            {
+                response in
+                
+                guard let unWrappedDelegate = self.delegate else {
+                    print("[getMenu]: ApegroupNetworkProtocol Delegate is nil")
+                    return
+                }
+                
+                guard response.result.isSuccess else {
+                    unWrappedDelegate.networkError(error: String(describing: response.error?.localizedDescription))
+                    return
+                }
+                
+                guard let json = response.result.value as? [String: Any] else
+                {
+                    unWrappedDelegate.networkError(error: "Unable to unserialize [createOrder] response")
+                    return
+                }
+                
+                try? OrderManager.orderManager.currentOrder.setOrderWithJson(json: json)
+                
+                unWrappedDelegate.orderCreated(order: OrderManager.orderManager.currentOrder)
+        }
+    }
+    
+    /**
+     Get a specific Order
+     */
+    internal func getOrder(order: Order)
+    {
+        
+        guard let orderId = order.orderId else {
+            return
+        }
+        
+        guard let url = URL(string: "\(Constants.OrderUrl)\(orderId)") else {
+            return
+        }
+        
+        Alamofire.request(url, method: .get, parameters: nil).validate()
+            .responseJSON
+            {
+                response in
+                
+                guard let unWrappedDelegate = self.delegate else {
+                    print("[getMenu]: ApegroupNetworkProtocol Delegate is nil")
+                    return
+                }
+                
+                guard response.result.isSuccess else {
+                    unWrappedDelegate.networkError(error: String(describing: response.error?.localizedDescription))
+                    return
+                }
+                
+                guard let json = response.result.value as? [String: Any] else
+                {
+                    unWrappedDelegate.networkError(error: "Unable to unserialize [createOrder] response")
+                    return
+                }
+                
+                if let networkOrder = try? Order(json: json) {
+                    unWrappedDelegate.orderReceived(order: networkOrder)
+                }
+        }
+    }
+    
+
 }

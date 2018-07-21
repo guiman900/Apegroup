@@ -11,7 +11,7 @@ import Foundation
 /**
 Category Model, use to sort the menu before displaying it on the DetailViewController.
  */
-class Category
+internal class Category
 {
     // - MARK: properties
     
@@ -41,6 +41,15 @@ class Category
         self.menu.append(try Menu(json: json))
     }
 
+    /**
+     Reset the quantity of the menu
+    */
+    internal func resetMenuCategories()
+    {
+        for index in 0...menu.count - 1 {
+            self.menu[index].quantity = 0
+        }
+    }
 }
 
 extension Category {
@@ -68,4 +77,6 @@ extension Category {
         }
         return result
     }
+    
+    
 }
