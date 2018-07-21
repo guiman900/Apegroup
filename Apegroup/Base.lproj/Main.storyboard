@@ -338,12 +338,33 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Restaurants" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="TeK-0J-6Fl" kind="show" identifier="OrdersPage" action="showDetailViewController:sender:" id="k7X-6T-sTv"/>
+                        <segue destination="UQH-Jg-LLO" kind="show" identifier="OrdersPage" id="8lw-OW-3Nc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="-630.13493253373315"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yo4-SV-DRb">
+            <objects>
+                <navigationController id="UQH-Jg-LLO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4q4-lk-Q72">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.19150069359999999" green="0.40678671" blue="0.49421349170000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TeK-0J-6Fl" kind="relationship" relationship="rootViewController" id="Dvc-SA-izF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NJ6-V1-sKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="-630"/>
         </scene>
         <!--Orders-->
         <scene sceneID="M2o-eS-Brl">
@@ -429,7 +450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hsj-Vu-0Wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1565.5999999999999" y="-630.13493253373315"/>
+            <point key="canvasLocation" x="2321" y="-630"/>
         </scene>
         <!--Restaurant Name-->
         <scene sceneID="X4J-4z-q2U">
@@ -684,7 +705,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKJ-f8-bit" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="-631"/>
+            <point key="canvasLocation" x="3199" y="-630"/>
         </scene>
         <!--Order View Controller-->
         <scene sceneID="elv-T6-gtd">
@@ -886,9 +907,14 @@
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.19150069359999999" green="0.40678671" blue="0.49421349170000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>

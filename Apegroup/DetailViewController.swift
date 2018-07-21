@@ -46,9 +46,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ApegroupNetwork.network.delegate = self
-
-        
         // Do any additional setup after loading the view, typically from a nib.
         let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(OrderViewController(_:)))
         navigationItem.rightBarButtonItem = addButton

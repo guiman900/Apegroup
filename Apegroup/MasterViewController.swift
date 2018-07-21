@@ -124,6 +124,15 @@ extension MasterViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
+        else {
+            let controller = segue.destination as? OrdersViewController
+            
+            controller?.title = "Previous Orders"
+            controller?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            controller?.navigationItem.leftItemsSupplementBackButton = true
+            
+        }
+
     }
 }
 
