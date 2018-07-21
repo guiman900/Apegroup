@@ -183,7 +183,7 @@ extension ResumeOrderViewController: UITableViewDataSource {
      - Parameter tableView: The table-view object requesting this information.
      - Parameter section: An index number identifying a section of tableView .
      */
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 5
     }
     
@@ -245,6 +245,6 @@ extension ResumeOrderViewController : ApegroupNetworkProtocol {
      */
     internal func networkError(error: String)
     {
-            (error)
+        print(error)
     }
 }
